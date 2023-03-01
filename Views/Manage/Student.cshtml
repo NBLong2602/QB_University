@@ -1,31 +1,39 @@
 ﻿@using System.Data
 @model DataTable
+
 @{
     ViewData["Title"] = "Quản lý sinh viên";
     
 }
-<h2>Danh sách môn học</h2>
+    <div class="panel-body" style="padding-top: 12px;" overflow-y:hidden">
+    <table id="example" style="width:95%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Full Name</th>
+                    <th>Phone</th>
+                    <th>Sửa</th>
+                    <th>Xóa</th>
+                </tr>
+            </thead>
+        
+            @foreach (DataRow row in @Model.Rows)
+            {
+                <tbody>
+                    <tr>
+                        <th>@row["ID"]</th>
+                        <th>@row["Email"]</th>
+                        <th>@row["Pass"]</th>
+                        <th>@row["Full_name"]</th>
+                        <th>@row["Phone"]</th>
+                        <th><a href="edit/@row["ID"]">Sửa</a></th>
+                        <th><a href="#">Xóa</a></th>
+                        @*<th><a asp-controller="Manage" asp-action="edit">Sửa</a></th>*@
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
 
-    <table style="width:95%">
-        <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Full Name</th>
-            <th>Phone</th>
-            <th>Sửa</th>
-            <th>Xóa</th>
-        </tr>
-        @foreach (DataRow row in @Model.Rows)
-        {
-        <tr>
-            <th>@row["ID"]</th>
-            <th>@row["Email"]</th>
-            <th>@row["Pass"]</th>
-            <th>@row["Full_name"]</th>
-            <th>@row["Phone"]</th>
-            <th><a href="#">Sửa</a></th>
-            <th><a href="#">Xóa</a></th>
-        </tr>
-        }
-    </table>

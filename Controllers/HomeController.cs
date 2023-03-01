@@ -23,7 +23,7 @@ namespace QB_University.Controllers
             {
                 return View();
             }
-            else return View("Login");
+            else return RedirectToAction("Login"); ;
             //return View();
         }
 
@@ -48,7 +48,7 @@ namespace QB_University.Controllers
             if(dt.Rows.Count > 0)
             {
                 HttpContext.Session.SetString("login","1");
-                return View("Index");
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -70,7 +70,7 @@ namespace QB_University.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return View("Login");
+            return RedirectToAction("Index");
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

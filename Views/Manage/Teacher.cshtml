@@ -4,7 +4,6 @@
     ViewData["Title"] = "Quản lý giảng viên";
 
 }
-<h2>Danh sách môn học</h2>
 
 <table style="width:95%">
     <tr>
@@ -24,7 +23,7 @@
             <th>@row["Pass"]</th>
             <th>@row["Full_name"]</th>
             <th>@row["Phone"]</th>
-            <th><a href="#">Sửa</a></th>
+            <th><a href="edit/@row["ID"]">Sửa</a></th>
             <th><a href="#">Xóa</a></th>
         </tr>
     }

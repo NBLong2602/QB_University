@@ -1,0 +1,19 @@
+﻿@model QB_University.Models.UserModel;
+@{
+    ViewData["Title"] = "Sửa User";
+
+}
+
+<form asp-controller="Manage" asp-action="edit" method="post">
+    <label for="fname">Full Name:</label><br>
+    <input type="text" name="fname"><br>
+    <label for="email">Email:</label><br>
+    <input type="email" name="Email"><br>
+    <label for="password">Password:</label><br>
+    <input type="text" name="Password"><br>
+    <label for="phone">Phone:</label><br>
+    <input type="text" name="Phone"><br>
+    <button>
+        <input type="submit" value="Cập Nhật">
+    </button>
+</form>

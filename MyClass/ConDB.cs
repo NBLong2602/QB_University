@@ -24,7 +24,7 @@ namespace QB_University.MyClass
 
         public void ExecuteQuery(string _sqlCommand)
         {
-            MySqlCommand cmd = new MySqlCommand( "", myConnection);
+            MySqlCommand cmd = new MySqlCommand( _sqlCommand, myConnection);
             cmd.CommandText = _sqlCommand;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = myConnection;
