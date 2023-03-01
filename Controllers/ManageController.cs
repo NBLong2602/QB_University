@@ -9,13 +9,14 @@ namespace QB_University.Controllers
         private ConDB conDB = new ConDB();
         public IActionResult Student()
         {
-            DataTable dt = conDB.GetData("SELECT * FROM course;");
+            DataTable dt = conDB.GetData("SELECT * FROM member WHERE role = '1';") ;
             return View(dt);
         }
 
         public IActionResult Teacher()
         {
-            return View();
+            DataTable dt = conDB.GetData("SELECT * FROM member WHERE role = '2';");
+            return View(dt);
         }
 
     }

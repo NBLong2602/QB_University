@@ -1,4 +1,31 @@
-﻿@{
+﻿@using System.Data
+@model DataTable
+@{
     ViewData["Title"] = "Quản lý giảng viên";
-    
+
 }
+<h2>Danh sách môn học</h2>
+
+<table style="width:95%">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Full Name</th>
+        <th>Phone</th>
+        <th>Sửa</th>
+        <th>Xóa</th>
+    </tr>
+    @foreach (DataRow row in @Model.Rows)
+    {
+        <tr>
+            <th>@row["ID"]</th>
+            <th>@row["Email"]</th>
+            <th>@row["Pass"]</th>
+            <th>@row["Full_name"]</th>
+            <th>@row["Phone"]</th>
+            <th><a href="#">Sửa</a></th>
+            <th><a href="#">Xóa</a></th>
+        </tr>
+    }
+</table>
