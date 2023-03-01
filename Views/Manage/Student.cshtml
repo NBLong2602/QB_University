@@ -1,0 +1,21 @@
+﻿@using System.Data
+@model DataTable
+@{
+    ViewData["Title"] = "Quản lý sinh viên";
+    
+}
+<h2>Danh sách môn học</h2>
+
+    <table style="width:100%">
+        <tr>
+            <th>Mã Môn</th>
+            <th>Tên Môn</th>
+        </tr>
+        @foreach (DataRow row in @Model.Rows)
+        {
+        <tr>
+            <th>@row["maMon"]</th>
+            <th>@row["tenMon"]</th>
+        </tr>
+        }
+    </table>

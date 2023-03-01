@@ -5,8 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // Add MySql Connection
-builder.Services.AddTransient<MySqlConnection>(_ =>
-    new MySqlConnection(builder.Configuration.GetConnectionString("Default")));
+//builder.Services.AddTransient<MySqlConnection>(_ =>
+//    new MySqlConnection(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddSession(option =>
 {
     option.IdleTimeout = TimeSpan.FromMinutes(30);

@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MySqlConnector;
 using QB_University.Models;
 using QB_University.MyClass;
 using System.Data;
 using System.Diagnostics;
-using System.Reflection.PortableExecutable;
 
 namespace QB_University.Controllers
 {
@@ -21,11 +19,11 @@ namespace QB_University.Controllers
 
         public IActionResult Index()
         {
-            if(checkLogin()==true)
+            if (checkLogin() == true)
             {
                 return View();
             }
-            return View("Login");
+            else return View("Login");
             //return View();
         }
 
@@ -41,13 +39,6 @@ namespace QB_University.Controllers
 
         public IActionResult Login() {
             return View();
-        }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [HttpPost]
@@ -68,12 +59,24 @@ namespace QB_University.Controllers
             bool result = false;
             if (HttpContext.Session.GetString("login")!=null)
             {
-                if (HttpContext.Session.GetString("login") != "1")
+                if (HttpContext.Session.GetString("login") == "1")
                 {
                     result = true;
                 }
             }
             return result;
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return View("Login");
+        }
+        
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
