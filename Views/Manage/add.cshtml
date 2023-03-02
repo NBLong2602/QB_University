@@ -1,5 +1,21 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model QB_University.Models.UserModel;
 @{
+    ViewData["Title"] = "Thêm User";
+
 }
+
+<form asp-controller="Manage" asp-action="add" method="post">
+    <label for="role">Role:</label><br>
+    <input type="number" min="1" max="2" name="Role"><br>
+    <label for="fname">Full Name:</label><br>
+    <input type="text" name="fname"><br>
+    <label for="email">Email:</label><br>
+    <input type="email" name="Email"><br>
+    <label for="password">Password:</label><br>
+    <input type="text" name="Password"><br>
+    <label for="phone">Phone:</label><br>
+    <input type="text" name="Phone"><br>
+    <button>
+        <input type="submit" value="Cập Nhật">
+    </button>
+</form>

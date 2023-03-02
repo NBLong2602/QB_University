@@ -9,26 +9,26 @@ namespace QB_University.Controllers
         private ConDB conDB = new ConDB();
         public IActionResult Student()
         {
-            
-            DataTable dt = conDB.GetData($"SELECT * FROM member WHERE role = '1';");
+            DataTable dt = conDB.GetData($"SELECT * FROM member WHERE role = '1' ORDER BY Full_name ASC;");
             return View(dt);
         }
 
         public IActionResult Teacher()
         {
-            DataTable dt = conDB.GetData($"SELECT * FROM member WHERE role = '2';");
+            DataTable dt = conDB.GetData($"SELECT * FROM member WHERE role = '2' ORDER BY Full_name ASC;");
             return View(dt);
         }
 
-        public IActionResult edit() {
+        public IActionResult edit()
+        {
             return View();
         }
 
         [HttpPost]
         public IActionResult edit(int ID, string fname, string Email, string Password, string Phone)
         {
-            
-            if (fname != ""|| Email != ""|| Password != ""|| Phone != "")
+
+            if (fname != "" || Email != "" || Password != "" || Phone != "")
             {
                 if (fname != null)
                 {
@@ -57,11 +57,33 @@ namespace QB_University.Controllers
 
         }
 
-
         public IActionResult add()
         {
             return View();
         }
 
+        [HttpPost]
+        public IActionResult add(int Role, string fname, string Email, string Password, string Phone)
+        {
+            if (fname == null || Email == null || Password == null || Phone == null || Role.ToString() == null)
+            {
+                return View();
+            }
+            else
+            {
+                conDB.ExecuteQuery($"INSERT INTO member (role,Full_name,Pass,Phone,Email) VALUES ('{Role}','{fname}','{Password}','{Phone}','{Email}')");
+                if (Role == 1) return RedirectToAction("Student");
+                else if (Role == 2) return RedirectToAction("Teacher");
+                else return View();
+            }
+        }
+
+        //public action delele(int ID)
+        //{
+        //    //DataTable dt = conDB.GetData($"SELECT role FROM member WHERE ID = '{ID}'");
+        //    //string role = string.Format(dt.ToString());
+        //    conDB.ExecuteQuery($"DELETE * FROM member WHERE ID = '{ID}'");
+        //    return RedirectToAction("Teacher");
+        //}
     }
 }

@@ -6,34 +6,35 @@
     
 }
     <div class="panel-body" style="padding-top: 12px;" overflow-y:hidden">
-    <table id="example" style="width:95%">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Full Name</th>
-                    <th>Phone</th>
-                    <th>Sửa</th>
-                    <th>Xóa</th>
-                </tr>
-            </thead>
-        
-            @foreach (DataRow row in @Model.Rows)
-            {
-                <tbody>
+        <div style="text-align:right"><a href="add">Thêm User</a></div>
+        <table id="example" style="width:95%">
+                <thead>
                     <tr>
-                        <th>@row["ID"]</th>
-                        <th>@row["Email"]</th>
-                        <th>@row["Pass"]</th>
-                        <th>@row["Full_name"]</th>
-                        <th>@row["Phone"]</th>
-                        <th><a href="edit/@row["ID"]">Sửa</a></th>
-                        <th><a href="#">Xóa</a></th>
-                        @*<th><a asp-controller="Manage" asp-action="edit">Sửa</a></th>*@
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Full Name</th>
+                        <th>Phone</th>
+                        <th>Sửa</th>
+                        <th>Xóa</th>
                     </tr>
-                </tbody>
-            }
+                </thead>
+        
+                @foreach (DataRow row in @Model.Rows)
+                {
+                    <tbody>
+                        <tr>
+                            <th>@row["ID"]</th>
+                            <th>@row["Email"]</th>
+                            <th>@row["Pass"]</th>
+                            <th>@row["Full_name"]</th>
+                            <th>@row["Phone"]</th>
+                            <th><a href="edit/@row["ID"]">Sửa</a></th>
+                            <th><a asp-controller="Manage" asp-action="delete">Xóa</a></th>
+                            @*<th><a asp-controller="Manage" asp-action="edit">Sửa</a></th>*@
+                        </tr>
+                    </tbody>
+                }
         </table>
     </div>
 
