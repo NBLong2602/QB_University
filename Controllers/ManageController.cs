@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using QB_University.MyClass;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace QB_University.Controllers
 {
@@ -78,12 +79,31 @@ namespace QB_University.Controllers
             }
         }
 
-        //public action delele(int ID)
-        //{
-        //    //DataTable dt = conDB.GetData($"SELECT role FROM member WHERE ID = '{ID}'");
-        //    //string role = string.Format(dt.ToString());
-        //    conDB.ExecuteQuery($"DELETE * FROM member WHERE ID = '{ID}'");
-        //    return RedirectToAction("Teacher");
-        //}
+        public IActionResult delete()
+        {
+            return RedirectToAction("About","Home");
+        }
+
+        [HttpGet]
+        public IActionResult delete(int ID) {
+            DataTable dt = conDB.GetData($"SELECT role FROM member WHERE ID = '{ID}'");
+            string getRole = null;
+            if(dt.Rows.Count > 0)
+            {
+                //Chạy vòng for lấy values trong cột
+                foreach (DataRow dr in dt.Rows)
+                {
+                    getRole = dr["role"].ToString();
+                    //Chỉ định dòng bao nhiêu trong cột sẽ được lấy giá trị
+                    //getRole = dr.ItemArray[0].ToString();
+                }
+                conDB.ExecuteQuery($"DELETE FROM member WHERE ID = {ID}");
+            }
+            if (getRole == "1") return RedirectToAction("Student");
+            else if (getRole == "2") return RedirectToAction("Teacher");
+            else return RedirectToAction("delete");
+
+        }
+
     }
 }

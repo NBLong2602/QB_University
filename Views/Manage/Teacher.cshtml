@@ -25,7 +25,7 @@
                 <th>@row["Full_name"]</th>
                 <th>@row["Phone"]</th>
                 <th><a href="edit/@row["ID"]">Sửa</a></th>
-                <th><a asp-controller="Manage" asp-action="delete">Xóa</a></th>
+                <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
             </tr>
         }
     </table>
