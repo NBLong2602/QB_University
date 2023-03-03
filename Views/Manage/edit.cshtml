@@ -1,19 +1,28 @@
 ﻿@model QB_University.Models.UserModel;
 @{
     ViewData["Title"] = "Sửa User";
-
+    ViewData["fullname"] = "Admin";
 }
+<style>
+    .form edit {
+        margin: auto;
+        width: 60%;
+        border: 3px solid #73AD21;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
 
-<form asp-controller="Manage" asp-action="edit" method="post">
+<form asp-controller="Manage" asp-action="edit" class="form edit">
     <label for="fname">Full Name:</label><br>
-    <input type="text" name="fname"><br>
+    <input type="text" name="fname"><br><br>
     <label for="email">Email:</label><br>
-    <input type="email" name="Email"><br>
+    <input type="email" name="Email"><br><br>
     <label for="password">Password:</label><br>
-    <input type="text" name="Password"><br>
+    <input type="text" name="Password"><br><br>
     <label for="phone">Phone:</label><br>
-    <input type="text" name="Phone"><br>
-    <button>
-        <input type="submit" value="Cập Nhật">
+    <input type="text" name="Phone"><br><br>
+    <button type="submit">
+        Xác nhận
     </button>
 </form>

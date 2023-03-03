@@ -8,6 +8,8 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
-
+        public string Quyen1 { get; set; }
+        public string Quyen2 { get; set; }
+        public string Quyen3 { get; set; }
     }
 }

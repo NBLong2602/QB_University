@@ -1,7 +1,7 @@
 ﻿@model QB_University.Models.UserModel;
 @{
     ViewData["Title"] = "Thêm User";
-
+    ViewData["fullname"] = "Admin";
 }
 
 <form asp-controller="Manage" asp-action="add" method="post">
@@ -15,7 +15,5 @@
     <input type="text" name="Password"><br>
     <label for="phone">Phone:</label><br>
     <input type="text" name="Phone"><br>
-    <button>
-        <input type="submit" value="Cập Nhật">
-    </button>
+    <button type="submit">Thêm</button>
 </form>

@@ -1,0 +1,55 @@
+﻿@model QB_University.Models.UserModel;
+@{
+    ViewData["Title"] = "Phân Quyền";
+    ViewData["fullname"] = "Admin";
+}
+<style>
+    .column {
+        float: left;
+        width: 25%;
+    }
+
+    .column:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .btn-cf{
+        padding-top:10%;
+        margin-left:45%;
+        margin-right:45%;
+    }
+</style>
+<form asp-controller="Home" asp-action="RoleProvider" method="post">
+    <div class="form provider">
+        <div class="column">
+            <label for="ID">ID:</label><br>
+            <input type="number" name="ID"><br>
+        </div>
+        <div class="column">
+            <label for="Quyen1">Quyền 1</label><br>
+            <select id="Quyen" name="Quyen1">
+                <option>Có</option>
+                <option>Không</option>
+            </select><br>
+        </div>
+        <div class="column">
+            <label for="Quyen2">Quyền 2</label><br>
+            <select id="Quyen" name="Quyen2">
+                <option>Có</option>
+                <option>Không</option>
+            </select><br>
+        </div>
+        <div class="column">
+            <label for="Quyen3">Quyền 3</label><br>
+            <select id="Quyen" name="Quyen3">
+                <option>Có</option>
+                <option>Không</option>
+            </select><br>
+        </div>
+    </div>
+    <div class="btn-cf">
+        <button type="submit">Xác Nhận</button>
+    </div>
+</form>
+<div>Trạng Thái : @ViewBag.rs</div>

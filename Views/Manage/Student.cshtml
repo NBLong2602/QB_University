@@ -3,37 +3,51 @@
 
 @{
     ViewData["Title"] = "Quản lý sinh viên";
-    
+    ViewData["fullname"] = "Admin";
 }
-    <div class="panel-body" style="padding-top: 12px;" overflow-y:hidden">
-        <div style="text-align:right"><a href="add">Thêm User</a></div>
-        <table id="example" style="width:95%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Full Name</th>
-                        <th>Phone</th>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                    </tr>
-                </thead>
-        
-                @foreach (DataRow row in @Model.Rows)
-                {
-                    <tbody>
-                        <tr>
-                            <th>@row["ID"]</th>
-                            <th>@row["Email"]</th>
-                            <th>@row["Pass"]</th>
-                            <th>@row["Full_name"]</th>
-                            <th>@row["Phone"]</th>
-                            <th><a href="edit/@row["ID"]">Sửa</a></th>
-                            <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
-                        </tr>
-                    </tbody>
-                }
-        </table>
-    </div>
+<div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+        <div class="container-fluid">
+            <!-- DataTables -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3" >
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <a href="add" style="text-align:right">Thêm User</a>
+                    </h6>
 
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Full Name</th>
+                                    <th>Phone</th>
+                                    <th>Sửa</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            @foreach (DataRow row in @Model.Rows)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <th>@row["ID"]</th>
+                                        <th>@row["Email"]</th>
+                                        <th>@row["Pass"]</th>
+                                        <th>@row["Full_name"]</th>
+                                        <th>@row["Phone"]</th>
+                                        <th><a href="edit/@row["ID"]">Sửa</a></th>
+                                        <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

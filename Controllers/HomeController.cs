@@ -23,7 +23,7 @@ namespace QB_University.Controllers
             {
                 return View();
             }
-            else return RedirectToAction("Login"); ;
+            else return RedirectToAction("Login");
             //return View();
         }
 
@@ -77,6 +77,31 @@ namespace QB_University.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult RoleProvider()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult RoleProvider(string Quyen1, string Quyen2, string Quyen3, int ID)
+        {
+            string success = "Cập Nhật Thành Công";
+            string faultID = "ID không tồn tại";
+            string nullID = "Chưa nhập ID";
+            if(ID != 0)
+            {
+                DataTable dt = conDB.GetData($"SELECT * FROM member WHERE ID = '{ID}'");
+                if (dt.Rows.Count > 0)
+                {
+                    conDB.ExecuteQuery($"UPDATE member SET Quyen1 = '{Quyen1}', Quyen2 = '{Quyen2}', Quyen3 = '{Quyen3}' WHERE ID = '{ID}'");
+                    ViewBag.rs = success;
+                    //return RedirectToAction("Index");
+                }
+                ViewBag.rs = faultID;
+            }
+            ViewBag.rs = nullID;
+            return RedirectToAction("RoleProvider");
         }
     }
 }
