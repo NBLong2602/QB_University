@@ -1,6 +1,768 @@
 ﻿@{
     ViewData["Title"] = "Giới Thiệu Phần Mềm";
     ViewData["fullname"] = "Admin";
-    //Layout=null;
 }
-<p>Phần mềm Quản Lý Đào Tạo Đại Học Quảng Bình</p>
+        <!-- Main content -->
+        <section class="content" >
+        <style>
+
+    .content {
+        background-image:src("~/wwwroot/img/dai-hoc-quang-binh.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        height: 100vh;
+        position: relative;
+    }
+
+    /* FEATURE LIST */
+    #featuresList {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        /* align-items: center; */
+        height: 70%;
+        /* margin-top: 10%; */
+    }
+
+    #featuresList .featuresListTop {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        /* gap: 50px; */
+        justify-content: space-around;
+    }
+
+    #featuresList .featuresListBot {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        /* gap: 50px; */
+    justify-content: space-evenly;
+        margin-top: 70px;
+    }
+
+    .featuresItems {
+        width: 285px;
+        height: 200px;
+        border-radius: 10px;
+        border: 2px solid;
+        background-color: transparent;
+        border-color: black;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .featuresItems .icon {
+        font-size: 80px;
+        transition: .5s; 
+    }
+
+    .featuresItems .text {
+        font-size: 18px;
+        font-family: var(--primary-font);
+        font-weight: 600;
+        color: black;
+        /* mix-blend-mode: screen; */
+        /* background-color: white; */
+        width: 100%;
+        height: 120%;
+        padding: 5px 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: center;
+        transition: .5s;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .featuresItems:hover .text {
+        font-size: 18px;
+        font-family: var(--primary-font);
+        font-weight: 600;
+        color: blue;
+        mix-blend-mode: screen;
+        background-color: blue;
+        padding: 5px 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: center;
+        cursor: pointer;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .popupContainer {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        visibility: hidden;
+        /* display: none; */
+    }
+
+    .popupBackground {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        top: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: .4;
+    }
+
+    .popup {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        opacity: 1;
+        margin: auto;
+        width: 800px;
+        height: 500px;
+        border-radius: 15px;
+        background-color: cadetblue;
+        padding: 25px 25px;
+        z-index: 3;
+    }
+
+    .popupHead {
+        margin-bottom: 20px;
+        height: 10%;
+    }
+
+    .popupHead h2 {
+        font-family: var(--primary-font);
+        font-weight: 800;
+        font-size: 26px;
+        color:darkturquoise
+    }
+
+    .popupBody {
+        height: 60%;
+        padding-right: 70px;
+        padding-left: 15px;
+        margin-bottom: 30px;
+    }
+
+    .popupBody .popupText {
+        font-family: var(--primary-font);
+        text-indent: -10px;
+        font-size: 18px;
+        margin-bottom: 5px;
+        color:white;
+    }
+
+    progress {
+        border-radius: 7px;
+        width: 50%;
+        height: 22px;
+        margin-right: 5px;
+        margin-left: 20px;
+        /* margin-left: -11.5%; */
+        /* box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 ); */
+    }
+
+    progress::-webkit-progress-bar {
+        background-color: black;
+        border-radius: 7px;
+        border: solid 2px #333;
+    }
+
+    progress::-webkit-progress-value {
+        background-color: lawngreen;
+        border-radius: 2px;
+        /* box-shadow: 1px 1px 5px 3px rgba( 255, 0, 0, 0.8 ); */
+    }
+
+    .popupFoot {
+        height: 15%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popupFoot h4 {
+        font-family: var(--primary-font);
+        font-size: 18px;
+        color:greenyellow;
+        /* margin-right: 30px; */
+    }
+
+    .popupButton {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popupButton button {
+        cursor: pointer;
+        width: 70px;
+        height: 30px;
+        font-family: var(--primary-font);
+        font-weight: 700;
+        border: solid 2px #1e1e1e;
+        border-radius: 7px;
+        /* transition: .5s; */
+    }
+
+    .popupButton button:hover {
+        background-color: gold;
+    }
+
+    .open-popup {
+        visibility: visible!important;
+    }
+
+    /* FOOTER */
+    #footer {
+        position: absolute;
+        bottom: 0;
+        justify-content: center;
+        display: flex;
+        width: 100%;
+    }
+
+    #footer p {
+        color: lawngreen;
+        font-family: var(--primary-font);
+        font-weight: 800;
+        font-size: 20px;
+        mix-blend-mode: screen;
+        background-color: black;
+        border-radius: 10px 10px 0 0;
+        padding: 0 15px;
+        z-index: -1;
+    }
+
+    @@media screen and (max-width: 1630px) {
+        #featuresList .featuresListTop {
+            display: flex;
+            grid-template-columns: auto auto auto auto;
+            gap: 50px;
+        }
+
+        #featuresList .featuresListBot {
+            display: flex;
+            grid-template-columns: auto auto auto auto;
+            gap: 50px;
+        }
+    }
+
+    @@media screen and (max-width: 1400px) {
+        #featuresList {
+            flex-direction: row;
+            gap: 100px;
+        }
+
+        #featuresList .featuresListTop {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featuresListTop .featuresItems {
+            flex-direction: row;
+            height: 100px;
+            zoom: 95%;
+        }
+
+        .featuresItems .text {
+            flex-direction: row;
+      
+        }
+
+        .featuresItems:hover .text {
+            flex-direction: row;
+            color:aquamarine;
+            background-color:black;
+        }
+
+        #featuresList .featuresListBot {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featuresListBot .featuresItems {
+            flex-direction: row;
+            height: 100px;
+        }
+
+        #footer {
+            justify-content: flex-end;
+        }
+    }
+
+    @@media screen and (max-height: 950px){
+        .topContainer {
+            height: 25%;
+            zoom: 90%;
+        }
+
+        .headerLeft .headerLeftBotText {
+            font-size: 40px;
+        }
+
+        #featuresList {
+            height: 75%;
+        }
+
+        .featuresListTop .featuresItems {
+            zoom: 90%;
+        }
+
+        .featuresListBot .featuresItems {
+            zoom: 90%;
+        }
+    }
+
+    @@media screen and (max-height: 700px) {
+        #featuresList {
+            zoom: 90%;
+        }
+
+        #featuresList .featuresListBot {
+            margin-top: 50px;
+        }
+
+        #footer {
+            zoom: 70%;
+        }
+    }
+
+    @@media screen and (max-width: 1200px) {
+        .headerLeft .headerLeftBotText {
+            font-size: 40px;
+        }
+
+        .popupContainer {
+            zoom: 90%;
+        }
+    }
+
+    @@media screen and (max-width: 1050px) and (max-height: 700px) {
+        .headerLeft .headerLeftBotText {
+            font-size: 30px;
+        }
+    }
+
+    @@media screen and (max-width: 1000px) {
+        #content {
+            margin: 0 100px;
+        }
+
+        .headerLeft .headerLeftBotText {
+    font-size: 35px;
+        }
+    }
+
+    @@media screen and (max-width: 800px) {
+        #content {
+            margin: 0 50px;
+        }
+
+        .popupContainer {
+            zoom: 80%;
+        }
+    }
+
+    @@media screen and (max-width: 720px) {
+        body {
+            margin-top: -30px;
+        }
+
+        .headerLeft .headerLeftBotText {
+            font-size: 30px;
+        }
+
+        .headerLeft .headerLeftTopText {
+            font-size: 15px;
+        }
+
+        .headerRight .headerRightText {
+            font-size: 15px;
+        }
+
+        #content {
+            margin: 30px;
+        }
+
+        #featuresList {
+            flex-direction: column;
+            gap: 0;
+            align-items: center;
+        }
+
+        #featuresList .featuresListTop {
+            gap: 30px;
+        }
+
+        #featuresList .featuresListBot {
+            margin-top: 30px;
+            gap: 30px;
+        }
+
+        .featuresListTop .featuresItems {
+            height: 50px;
+            zoom: 100%;
+        }
+
+        .featuresListBot .featuresItems {
+            height: 50px;
+            zoom: 100%;
+        }
+
+        .featuresItems .text {
+            justify-content: flex-start;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .featuresItems:hover .text {
+            justify-content: flex-start;
+            font-size: 15px;
+            text-align: center;
+            color:aquamarine;
+            background-color:black;
+        }
+
+        #featuresList .featuresItems .icon {
+            font-size: 30px;
+            padding-right: 30px;
+        }
+
+        .popupContainer {
+            zoom: 80%;
+        }
+
+        .popup {
+            width: 500px;
+            height: 600px;
+
+        }
+        #footer {
+            justify-content: center;
+        }
+
+        #footer p {
+            font-size: 15px;
+        }
+    }
+
+    @@media screen and (max-width: 720px) and (max-height: 800px){
+        #featuresList .featuresListTop {
+            gap: 15px;
+        }
+
+        #featuresList .featuresListBot {
+            gap: 15px
+        }
+
+
+    }
+
+    @@media screen and (max-width: 550px) {
+        .headerLeft .headerLeftBotText {
+            font-size: 25px;
+        }
+
+        .popupContainer {
+            zoom: 70%;
+        }
+
+        .popup {
+            width: 90%;
+        }
+    }
+
+    </style>
+        <div id="content">
+            <div id="featuresList">
+                <div class="featuresListTop">
+                    <button class="featuresItems" onclick="openPopup1()">
+                        <p class="text">
+                        <i class="fa fa-cogs icon"></i>
+                            Quản trị hệ thống, quản trị người dùng
+                        </p>
+                    </button>
+                    <div class="popupContainer" id="popup1">
+                        <div class="popupBackground" onclick="closePopup1()"></div>
+                        <div class="popup" style="height: 600px;">
+                            <div class="popupHead">
+                                <h2>Quản trị hệ thống, quản trị người dùng</h2>
+                            </div>
+                            <div class="popupBody">
+                                <p class="popupText">- Quản lý người dùng</p>
+                                <p class="popupText">- Phân quyền người dùng</p>
+                                <p class="popupText">- Quản trị dữ liệu danh mục</p>
+                                <p class="popupText">- Quản lý cấu hình hệ thống</p>
+                                <p class="popupText">- Quản lý log</p>
+                                <p class="popupText">- Quản lý chứng chỉ</p>
+                                <p class="popupText">- Quản lý thông báo</p>
+                                <p class="popupText">- Quản lý khảo sát</p>
+                                <p class="popupText">- Quản lý liên kết lỗi</p>
+                                <p class="popupText">- Quản lý quy trình kiểm duyệt</p>
+                                <p class="popupText">- Quản lý FAQ</p>
+                                <p class="popupText">- Quản lý Feedback</p>
+                            </div>
+                            <div class="popupFoot">
+                                <h4>Tiến độ hoàn thiện: </h4>
+                                <progress id="file" value="10" max="100"> 10% </progress>
+                                <h4>10%</h4>
+                            </div>
+                            <div class="popupButton">
+                                <button onclick="closePopup1()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="featuresItems" onclick="openPopup2()">
+                        <p class="text">
+                        <i class="fa-solid fa-school icon"></i>
+                            Quản lý đào tạo và kết quả học tập
+                        </p>
+                    </button>
+                    <div class="popupContainer" id="popup2">
+                        <div class="popupBackground" onclick="closePopup2()"></div>
+                        <div class="popup">
+                            <div class="popupHead">
+                                <h2>Quản lý đào tạo và kết quả học tập</h2>
+                            </div>
+                            <div class="popupBody">
+                                <p class="popupText">- Đăng kí, quản lý thành viên</p>
+                                <p class="popupText">- Quản lý học phí</p>
+                                <p class="popupText">- Quản lý học tập</p>
+                                <p class="popupText">- Lớp học ảo/hội thảo trực tuyến</p>
+                                <p class="popupText">- Quản lý thi</p>
+                                <p class="popupText">- Khảo sát</p>
+                                <p class="popupText">- Đề xuất khóa học</p>
+                            </div>
+                            <div class="popupFoot">
+                                <h4>Tiến độ hoàn thiện: </h4>
+                                <progress id="file" value="15" max="100"> 15% </progress>
+                                <h4>15%</h4>
+                            </div>
+
+                            <div class="popupButton">
+                                <button onclick="closePopup2()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="featuresItems" onclick="openPopup3()">
+                        <p class="text">
+                        <i class="fa fa-calendar icon"></i>
+                            Quản lý kế hoạch đào tạo và thời khóa biểu
+                        </p>
+                    </button>
+                    <div class="popupContainer" id="popup3">
+                        <div class="popupBackground"  onclick="closePopup3()"></div>
+
+                        <div class="popup">
+                            <div class="popupHead">
+                                <h2>Quản lý kế hoạch đào tạo và thời khóa biểu</h2>
+                            </div>
+                            <div class="popupBody">
+                                <p class="popupText">- Quản trị chương trình đào tao</p>
+                                <p class="popupText">- Quản trị quá trình học tập</p>
+                                <p class="popupText">- Quản trị nội dung đào tạo</p>
+                            </div>
+                            <div class="popupFoot">
+                                <h4>Tiến độ hoàn thiện: </h4>
+                                <progress id="file" value="15" max="100"> 15% </progress>
+                                <h4>15%</h4>
+                            </div>
+
+                            <div class="popupButton">
+                                <button onclick="closePopup3()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="featuresItems" onclick="openPopup4()">
+                        <p class="text">
+                        <i class="fa fa-users icon"></i>
+                            Quản lý sinh viên/giảng viên
+                        </p>
+                    </button>
+                    <div class="popupContainer" id="popup4">
+                        <div class="popupBackground"  onclick="closePopup4()"></div>
+
+                        <div class="popup">
+                            <div class="popupHead">
+                                <h2>Quản lý sinh viên/giảng viên</h2>
+                            </div>
+                            <div class="popupBody">
+                                <p class="popupText">- Quản lý Giảng Viên</p>
+                                <p class="popupText">- Quản lý Sinh Viên</p>
+                            </div>
+                            <div class="popupFoot">
+                                <h4>Tiến độ hoàn thiện: </h4>
+                                <progress id="file" value="25" max="100"> 25% </progress>
+                                <h4>25%</h4>
+                            </div>
+                            <div class="popupButton">
+                                <button onclick="closePopup4()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featuresListBot">
+                    <button class="featuresItems" onclick="openPopup5()">
+                        <p class="text">
+                        <i class="fa fa-credit-card icon"></i>
+                            Quản lý tài chính
+                        </p>
+                    </button>
+                    <div class="popupContainer" id="popup5">
+                        <div class="popupBackground" onclick="closePopup5()"></div>
+
+                        <div class="popup">
+                            <div class="popupHead">
+                                <h2>Quản lý thông tin học phí</h2>
+                            </div>
+                            <div class="popupBody">
+                                <p class="popupText">- Quản lý thông tin học phí</p>
+                            </div>
+                            <div class="popupFoot">
+                                <h4>Tiến độ hoàn thiện: </h4>
+                                <progress id="file" value="20" max="100"> 20% </progress>
+                                <h4>20%</h4>
+                            </div>
+
+                            <div class="popupButton">
+                                <button onclick="closePopup5()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="featuresItems" onclick="openPopup6()">
+                        <p class="text">
+                        <i class="fa fa-tasks icon"></i>
+                            Khảo sát người học
+                        </p>
+                    </button>
+                    <div class="popupContainer" id="popup6">
+                        <div class="popupBackground" onclick="closePopup6()"></div>
+
+                        <div class="popup">
+                            <div class="popupHead">
+                                <h2>Modul Khảo sát người học</h2>
+                            </div>
+                            <div class="popupBody">
+                                <p class="popupText">- Khảo sát người học</p>
+                            </div>
+                            <div class="popupFoot">
+                                <h4>Tiến độ hoàn thiện: </h4>
+                                <progress id="file" value="20" max="100"> 20% </progress>
+                                <h4>20%</h4>
+                            </div>
+
+                            <div class="popupButton">
+                                <button onclick="closePopup6()">Đóng</button>
+    </div>
+                        </div>
+                    </div>
+
+                    <button class="featuresItems" onclick="openPopup7()">
+                        <p class="text">
+                        <i class="fa fa-certificate icon"></i>
+                            Quản lý văn bằng chứng chỉ
+                        </p>
+                    </button>
+                    <div class="popupContainer" id="popup7">
+                        <div class="popupBackground" onclick="closePopup7()"></div>
+
+                        <div class="popup">
+                            <div class="popupHead">
+                                <h2>Modul Quản lý văn bằng chứng chỉ</h2>
+                            </div>
+                            <div class="popupBody">
+                                <p class="popupText">- Quản lý lưu trữ, cấp phát văn bằng chứng chỉ</p>
+                            </div>
+                            <div class="popupFoot">
+                                <h4>Tiến độ hoàn thiện: </h4>
+                                <progress id="file" value="20" max="100"></progress>
+                                <h4>20%</h4>
+                            </div>
+
+                            <div class="popupButton">
+                                <button onclick="closePopup7()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </section>
+
+      <script>
+        function openPopup1() {
+            document.getElementById("popup1").classList.add("open-popup");
+        }
+
+        function closePopup1() {
+            document.getElementById("popup1").classList.remove("open-popup");
+        }
+
+        function openPopup2() {
+            document.getElementById("popup2").classList.add("open-popup");
+        }
+
+        function closePopup2() {
+            document.getElementById("popup2").classList.remove("open-popup");
+        }
+
+        function openPopup3() {
+            document.getElementById("popup3").classList.add("open-popup");
+        }
+
+        function closePopup3() {
+            document.getElementById("popup3").classList.remove("open-popup");
+        }
+
+        function openPopup4() {
+            document.getElementById("popup4").classList.add("open-popup");
+        }
+
+        function closePopup4() {
+            document.getElementById("popup4").classList.remove("open-popup");
+        }
+
+        function openPopup5() {
+            document.getElementById("popup5").classList.add("open-popup");
+        }
+
+        function closePopup5() {
+            document.getElementById("popup5").classList.remove("open-popup");
+        }
+
+        function openPopup6() {
+            document.getElementById("popup6").classList.add("open-popup");
+        }
+
+        function closePopup6() {
+            document.getElementById("popup6").classList.remove("open-popup");
+        }
+
+        function openPopup7() {
+            document.getElementById("popup7").classList.add("open-popup");
+        }
+
+        function closePopup7() {
+    document.getElementById("popup7").classList.remove("open-popup");
+        }
+    </script>
+
