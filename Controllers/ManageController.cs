@@ -9,38 +9,10 @@ namespace QB_University.Controllers
     public class ManageController : Controller
     {
         private ConDB conDB = new ConDB();
-        //PAGING
-        public const int ITEMS_PER_PAGE = 5;
-        [BindProperty(SupportsGet = true, Name = "p")]
-        public int currentPage { get; set; }
-        public int countPages { get; set; }
-        //
         public IActionResult Student()
-        //
         {
-            //if (currentPage < 1) currentPage = 1;
-            //if (currentPage > countPages) currentPage = countPages;
-            //var mydataTable = conDB.GetData($"SELECT * FROM member WHERE role = '1' ORDER BY ID ASC LIMIT 1,{ITEMS_PER_PAGE};");
-            //int total = mydataTable.Rows.Count;
-            //countPages = (int)Math.Ceiling((double)total / ITEMS_PER_PAGE);
-            //var PagingModel = new PagingModel
-            //{
-            //    dt = mydataTable
-            //};
-            //return View(PagingModel);
             DataTable dt = conDB.GetData($"SELECT * FROM member WHERE role = '1' ORDER BY ID ASC;");
             return View(dt);
-        }
-        [HttpGet]
-        //public ActionResult Student(int? page)
-        //{
-        //    int pageSize = 10;
-        //    int pageIndex = 1;
-
-        //}
-        private object? PagingModel()
-        {
-            throw new NotImplementedException();
         }
 
         public IActionResult Teacher()

@@ -1,19 +1,9 @@
 ﻿@using System.Data
-@*@model QB_University.Models.PagingModel*@
 @model DataTable
 @{
     ViewData["Title"] = "Quản lý sinh viên";
     ViewData["fullname"] = "Admin";
 }
-
-@*@{
-    var pagingmodel = new QB_University.Models.PagingModel()
-            {
-                currentPage = Model.currentPage,
-                countPages = Model.countPages,
-                generateUrl = (int? p) => "?page=" + p
-            };
-}*@
 
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
@@ -42,9 +32,9 @@
                                     <th>Xóa</th>
                                 </tr>
                             </thead>
+                            <tbody>
                             @foreach (DataRow row in Model.Rows)
                             {
-                                <tbody>
                                     <tr>
                                         <th>@row["ID"]</th>
                                         <th>@row["Email"]</th>
@@ -54,10 +44,10 @@
                                         <th><a asp-controller="Manage" asp-action="edit" asp-route-id=@row["ID"]>Sửa</a></th>
                                         <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
                                     </tr>
-                                </tbody>
-                            }
+
+                             }
+                            </tbody>
                         </table>
-                       @* <partial name="_Paging" model="@pagingmodel" />*@
                     </div>
                 </div>
             </div>
