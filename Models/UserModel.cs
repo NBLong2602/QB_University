@@ -11,5 +11,6 @@
         public string Quyen1 { get; set; }
         public string Quyen2 { get; set; }
         public string Quyen3 { get; set; }
+        public List<UserModel> user { get; set; }
     }
 }

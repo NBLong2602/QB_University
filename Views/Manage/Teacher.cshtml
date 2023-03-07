@@ -4,22 +4,15 @@
     ViewData["Title"] = "Quản lý giảng viên";
     ViewData["fullname"] = "Admin";
 }
-<head>
-    <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
-    <script>
-        $(document.ready(function () {
-            $('#dataTable').DataTable();
-        });
-    </script>
-</head>
 
 <div class="container-fluid">
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
-                <a href="add" style="text-align:right">Thêm User</a>
+                <a href="add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fa-solid fa-user-plus" style="padding-right:5px;"></i>Thêm User
+                </a>
             </h6>
 
         </div>
@@ -46,7 +39,7 @@
                                 <th>@row["Pass"]</th>
                                 <th>@row["Full_name"]</th>
                                 <th>@row["Phone"]</th>
-                                <th><a href="edit/@row["ID"]">Sửa</a></th>
+                                <th><a asp-controller="Manage" asp-action="edit" asp-route-id=@row["ID"]>Sửa</a></th>
                                 <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
                             </tr>
                         </tbody>
@@ -57,29 +50,3 @@
     </div>
 
 </div>
-@*<div class="panel-body" style="padding-top: 12px;" overflow-y:hidden">
-    <div style="text-align:right"><a href="add">Thêm User</a></div>
-    <table style="width:95%">
-        <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Full Name</th>
-            <th>Phone</th>
-            <th>Sửa</th>
-            <th>Xóa</th>
-        </tr>
-        @foreach (DataRow row in @Model.Rows)
-        {
-            <tr>
-                <th>@row["ID"]</th>
-                <th>@row["Email"]</th>
-                <th>@row["Pass"]</th>
-                <th>@row["Full_name"]</th>
-                <th>@row["Phone"]</th>
-                <th><a href="edit/@row["ID"]">Sửa</a></th>
-                <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
-            </tr>
-        }
-    </table>
-</div>*@

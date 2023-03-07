@@ -1,24 +1,36 @@
 ﻿@using System.Data
+@*@model QB_University.Models.PagingModel*@
 @model DataTable
-
 @{
     ViewData["Title"] = "Quản lý sinh viên";
     ViewData["fullname"] = "Admin";
 }
+
+@*@{
+    var pagingmodel = new QB_University.Models.PagingModel()
+            {
+                currentPage = Model.currentPage,
+                countPages = Model.countPages,
+                generateUrl = (int? p) => "?page=" + p
+            };
+}*@
+
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
         <div class="container-fluid">
             <!-- DataTables -->
             <div class="card shadow mb-4">
-                <div class="card-header py-3" >
+                <div class="card-header py-3" style="margin-right:0px">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        <a href="add" style="text-align:right">Thêm User</a>
+                        <a href="add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fa-solid fa-user-plus" style="padding-right:5px;"></i>Thêm User
+                        </a>
                     </h6>
 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -30,7 +42,7 @@
                                     <th>Xóa</th>
                                 </tr>
                             </thead>
-                            @foreach (DataRow row in @Model.Rows)
+                            @foreach (DataRow row in Model.Rows)
                             {
                                 <tbody>
                                     <tr>
@@ -39,15 +51,23 @@
                                         <th>@row["Pass"]</th>
                                         <th>@row["Full_name"]</th>
                                         <th>@row["Phone"]</th>
-                                        <th><a href="edit/@row["ID"]">Sửa</a></th>
+                                        <th><a asp-controller="Manage" asp-action="edit" asp-route-id=@row["ID"]>Sửa</a></th>
                                         <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
                                     </tr>
                                 </tbody>
                             }
                         </table>
+                       @* <partial name="_Paging" model="@pagingmodel" />*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#userTable').DataTable();
+        });
+    </script>
+}
