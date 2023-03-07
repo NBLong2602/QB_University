@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using QB_University.MyClass;
-using PageList;
-using QB_University.Models;
 
 namespace QB_University.Controllers
 {

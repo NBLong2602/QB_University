@@ -16,10 +16,8 @@
     <!-- DataTables scripts for Manage pages-->
     <link href="~/css/site.css" rel="stylesheet">
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" rel="stylesheet">
-
+    <link href="~/css/jquery.datatables.css" rel="stylesheet" />
+    <link href="~/css/buttons.datatables.min.css" rel="stylesheet" />
 
 </head>
 
@@ -429,13 +427,21 @@
     <script src="~/js/demo/chart-pie-demo.js"></script>
     <!-- DataTables scripts for Manage pages-->
     <script src="~/vendor/jquery/jquery.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+    <script src="~/vendor/jquery/jquery-3.5.1.js"></script>
+    <script src="~/vendor/jquery/jquery.dataTables.js"></script>
+    <script src="~/vendor/jquery/datatables.buttons.min.js"></script>
     <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
-    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/jquery/jquery.dataTables.min.js"></script>
     <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+    
+    <!-- Export Excel-->
+    <script src="~/vendor/jquery/datatables.buttons.min.js"></script>
+    <script src="~/vendor/ajax/jszip.min.js"></script>
+    <script src="~/vendor/ajax/pdfmake.min.js"></script>
+    <script src="~/vendor/ajax/vfs_fonts.js"></script>
+    <script src="~/vendor/jquery/buttons.html5.min.js"></script>
+    <script src="~/vendor/jquery/buttons.print.min.js"></script>
     @RenderSection("Scripts", required: false)
-
 </body>
 
 </html>

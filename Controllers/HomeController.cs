@@ -95,12 +95,12 @@ namespace QB_University.Controllers
                 if (dt.Rows.Count > 0)
                 {
                     conDB.ExecuteQuery($"UPDATE member SET Quyen1 = '{Quyen1}', Quyen2 = '{Quyen2}', Quyen3 = '{Quyen3}' WHERE ID = '{ID}'");
-                    ViewBag.rs = success;
+                    @ViewBag.rs = success;
                     //return RedirectToAction("Index");
                 }
-                ViewBag.rs = faultID;
+                @ViewBag.rs = faultID;
             }
-            ViewBag.rs = nullID;
+            @ViewBag.rs = nullID;
             return RedirectToAction("RoleProvider");
         }
     }

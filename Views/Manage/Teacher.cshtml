@@ -5,47 +5,56 @@
     ViewData["fullname"] = "Admin";
 }
 
-<div class="container-fluid">
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                <a href="add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                    <i class="fa-solid fa-user-plus" style="padding-right:5px;"></i>Thêm User
-                </a>
-            </h6>
+<div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+        <div class="container-fluid">
 
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Full Name</th>
-                            <th>Phone</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (DataRow row in @Model.Rows)
-                    {
-                            <tr>
-                                <th>@row["ID"]</th>
-                                <th>@row["Email"]</th>
-                                <th>@row["Pass"]</th>
-                                <th>@row["Full_name"]</th>
-                                <th>@row["Phone"]</th>
-                                <th><a asp-controller="Manage" asp-action="edit" asp-route-id=@row["ID"]>Sửa</a></th>
-                                <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
-                            </tr>
+            <!-- DataTables -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3" style="padding-bottom: 0rem!important;">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            <a href="add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                <i class="fa-solid fa-user-plus" style="padding-right:5px;"></i>Thêm Sinh Viên
+                            </a>
+                        </h6>
+                        @*<button id="btnExport" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+                        </button>*@
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="userTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Full Name</th>
+                                    <th>Phone</th>
+                                    <th>Sửa</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow row in Model.Rows)
+                                {
+                                    <tr>
+                                        <th>@row["ID"]</th>
+                                        <th>@row["Email"]</th>
+                                        <th>@row["Pass"]</th>
+                                        <th>@row["Full_name"]</th>
+                                        <th>@row["Phone"]</th>
+                                        <th><a asp-controller="Manage" asp-action="edit" asp-route-id=@row["ID"]>Sửa</a></th>
+                                        <th><a asp-controller="Manage" asp-action="delete" asp-route-id=@row["ID"]>Xóa</a></th>
+                                    </tr>
 
-                    }
-                    </tbody>
-                </table>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -53,7 +62,18 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#userTable').DataTable();
+            //$('#userTable').DataTable();
+            $('#userTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+                //    ScrollY table nhưng mất chọn số item trong 1 pageindex
+                //    deferRender: true,
+                //    scrollY: 200,
+                //    scrollCollapse: true,
+                //    scroller: true
+            });
         });
     </script>
 }
